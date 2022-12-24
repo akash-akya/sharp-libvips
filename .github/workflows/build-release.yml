@@ -62,19 +62,19 @@ jobs:
           omitNameDuringUpdate: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload Release Asset (.tar.br)
-        id: upload-release-asset-br
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true
-          artifacts: libvips-*-${{ matrix.platform }}.tar.br
-          artifactContentType: application/x-brotli
-          artifactErrorsFailBuild: true
-          omitBodyDuringUpdate: true
-          omitNameDuringUpdate: true
-          prerelease: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Upload Release Asset (.tar.br)
+      #   id: upload-release-asset-br
+      #   if: startsWith(github.ref, 'refs/tags/v')
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     allowUpdates: true
+      #     artifacts: libvips-*-${{ matrix.platform }}.tar.br
+      #     artifactContentType: application/x-brotli
+      #     artifactErrorsFailBuild: true
+      #     omitBodyDuringUpdate: true
+      #     omitNameDuringUpdate: true
+      #     prerelease: true
+      #     token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Release Asset (.integrity)
         id: upload-release-asset-integrity
         if: startsWith(github.ref, 'refs/tags/v')
