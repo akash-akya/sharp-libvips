@@ -23,4 +23,4 @@ jobs:
       - when:
           condition: <<pipeline.git.tag>>
           steps:
-            - run: gh release upload --repo lovell/sharp-libvips $CIRCLE_TAG *.tar.gz *.integrity
+            - run: gh release upload --repo akash-akya/sharp-libvips $CIRCLE_TAG *.tar.gz *.integrity
