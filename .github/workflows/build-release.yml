@@ -23,6 +23,8 @@ jobs:
     permissions:
       contents: write
     runs-on: ${{ matrix.os }}
+    env:
+      VERSION_LATEST_REQUIRED: "false"
     needs: create-release
     strategy:
       fail-fast: false
