@@ -40,4 +40,4 @@ Use of libraries under the terms of the LGPLv3 is via the
 "any later version" clause of the LGPLv2 or LGPLv2.1.
 
 Please report any errors or omissions via
-https://github.com/lovell/sharp-libvips/issues/new
+https://github.com/akash-akya/sharp-libvips/issues/new
