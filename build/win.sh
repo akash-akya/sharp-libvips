@@ -38,7 +38,7 @@ rm bin/libvips-42.dll
 cp bin/*.dll lib/
 
 # Add third-party notices
-$CURL -O https://raw.githubusercontent.com/lovell/sharp-libvips/main/THIRD-PARTY-NOTICES.md
+$CURL -O https://raw.githubusercontent.com/akash-akya/sharp-libvips/main/THIRD-PARTY-NOTICES.md
 
 echo "Creating tarball"
 tar czf /packaging/sharp-libvips-${PLATFORM}.tar.gz \
