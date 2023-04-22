@@ -16,6 +16,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
   build:
     runs-on: ${{ matrix.os }}
+    env:
+      VERSION_LATEST_REQUIRED: "false"
     needs: create-release
     strategy:
       fail-fast: false
