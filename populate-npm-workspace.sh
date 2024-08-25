@@ -53,7 +53,7 @@ remove_unused() {
 }
 
 # Download and extract per-platform binaries
-PLATFORMS=$(ls platforms --ignore=win32*)
+PLATFORMS=$(ls platforms --ignore=*armv7 --ignore=win32*)
 for platform in $PLATFORMS; do
   extract "$platform"
 done
