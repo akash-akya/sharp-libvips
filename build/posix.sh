@@ -23,7 +23,7 @@ case ${PLATFORM} in
     TARGET=/target
     PACKAGE=/packaging
     ROOT=/root
-    VIPS_CPP_DEP=libvips-cpp.so.$(without_prerelease $VERSION_VIPS)
+    VIPS_CPP_DEP=libvips-cpp.so.42
     ;;
   darwin*)
     DARWIN=true
@@ -31,7 +31,7 @@ case ${PLATFORM} in
     TARGET=$PWD/target
     PACKAGE=$PWD
     ROOT=$PWD/platforms/$PLATFORM
-    VIPS_CPP_DEP=libvips-cpp.$(without_prerelease $VERSION_VIPS).dylib
+    VIPS_CPP_DEP=libvips-cpp.42.dylib
     ;;
 esac
 
@@ -365,15 +365,13 @@ meson install -C _build --tag devel
 mkdir ${DEPS}/vips
 $CURL https://github.com/libvips/libvips/releases/download/v${VERSION_VIPS}/vips-${VERSION_VIPS}.tar.xz | tar xJC ${DEPS}/vips --strip-components=1
 cd ${DEPS}/vips
-# Use version number in SONAME
-$CURL https://gist.githubusercontent.com/lovell/313a6901e9db1bf285f2a1f1180499e4/raw/3988223c7dfa4d22745d9392034b0117abef1446/libvips-cpp-soversion.patch | patch -p1
 # Disable HBR support in heifsave
 $CURL https://github.com/libvips/build-win64-mxe/raw/v${VERSION_VIPS}/build/patches/vips-8-heifsave-disable-hbr-support.patch | patch -p1
-# Link libvips.so statically into libvips-cpp.so
+# Link libvips.so.42 statically into libvips-cpp.so.42
 sed -i'.bak' "s/library('vips'/static_&/" libvips/meson.build
 sed -i'.bak' "/version: library_version/{N;d;}" libvips/meson.build
 if [ "$LINUX" = true ]; then
-  # Ensure libvips-cpp.so is linked with -z nodelete
+  # Ensure libvips-cpp.so.42 is linked with -z nodelete
   sed -i'.bak' "/gnu_symbol_visibility: 'hidden',/a link_args: nodelete_link_args," cplusplus/meson.build
   # Ensure symbols from external libs (except for libglib-2.0.a and libgobject-2.0.a) are not exposed
   EXCLUDE_LIBS=$(find ${TARGET}/lib -maxdepth 1 -name '*.a' ! -name 'libglib-2.0.a' ! -name 'libgobject-2.0.a' -printf "-Wl,--exclude-libs=%f ")
