@@ -70,7 +70,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: libvips-*-${{ matrix.platform }}.tar.gz
+          artifacts: sharp-libvips-*-${{ matrix.platform }}.tar.gz
           artifactContentType: application/gzip
           omitBodyDuringUpdate: true
           omitNameDuringUpdate: true
