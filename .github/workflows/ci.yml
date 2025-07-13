@@ -15,7 +15,7 @@ jobs:
       #   run: ./check-latest-versions.sh
   build:
     permissions:
-      contents: read
+      contents: write
     name: build-${{ matrix.platform }}
     runs-on: ${{ matrix.os }}
     needs: check-latest-versions
